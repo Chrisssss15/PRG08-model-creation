@@ -226,14 +226,14 @@ const initializeTrackers = async () => {
     console.log("All models loaded. You can start the webcam.");
     enableWebcamButton.addEventListener("click", toggleWebcam);
     logButton.addEventListener("click", logResults);
-    predictButton.addEventListener("click", () => {
-        if (handResults && handResults.landmarks) {
-            let flatArray = handResults.landmarks[0].flatMap(p => [p.x, p.y, p.z]);
-            calculateLetter(flatArray, rockPaperScissor);
-        } else {
-            console.warn("Geen handdata beschikbaar om te voorspellen.");
-        }
-    });
+    // predictButton.addEventListener("click", () => {
+    //     if (handResults && handResults.landmarks) {
+    //         let flatArray = handResults.landmarks[0].flatMap(p => [p.x, p.y, p.z]);
+    //         calculateLetter(flatArray, rockPaperScissor);
+    //     } else {
+    //         console.warn("Geen handdata beschikbaar om te voorspellen.");
+    //     }
+    // });
 };
 
 // Toggle webcam
