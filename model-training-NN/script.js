@@ -22,7 +22,7 @@ function startTraining(){
     }
 
     nn.normalizeData();
-    nn.train({epochs: 30}, finishedTraining);
+    nn.train({epochs: 40}, finishedTraining);
 
 }
 
