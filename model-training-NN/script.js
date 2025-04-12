@@ -11,10 +11,15 @@ function startTraining(){
     nn = ml5.neuralNetwork({
         task: 'classification',
         debug: true,
-        // learningRate: 0.01
+        layers: [
+            { type: 'dense', units: 32, activation: 'relu' },
+            { type: 'dense', units: 32, activation: 'relu' },
+            { type: 'dense', units: 4, activation: 'softmax' }
+        ],
+        learningRate: 0.01,
     });
 
-    console.log('adding ${posedata.length} poses');
+    console.log(`adding ${posedata.length} poses`);
 
     for(let pose of posedata){
         // console.log(pose);
@@ -22,7 +27,7 @@ function startTraining(){
     }
 
     nn.normalizeData();
-    nn.train({epochs: 40}, finishedTraining);
+    nn.train({epochs: 130}, finishedTraining);
 
 }
 
@@ -33,11 +38,11 @@ function finishedTraining(){
     nn.save(); // Save the model
 
     let demopose = posedata[10].data;
-    nn.classify(demopose, (result) => {
-        console.log(`I think this pose is a ${result[0].label}`);
-        console.log(`I am ${result[0].confidence.toFixed(2)* 100} % sure`);
+    // nn.classify(demopose, (result) => {
+    //     console.log(`I think this pose is a ${result[0].label}`);
+    //     console.log(`I am ${result[0].confidence.toFixed(2)* 100} % sure`);
 
-    });
+    // });
 
 }
 
