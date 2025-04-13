@@ -2,7 +2,7 @@ import { HandLandmarker, PoseLandmarker, FaceLandmarker, FilesetResolver, Drawin
 import kNear from "./knear.js"
 
 const enableWebcamButton = document.getElementById("webcamButton");
-const logButton = document.getElementById("logButton");
+const logButton = document.getElementById("logButton"); 
 const predictButton = document.getElementById("predictButton");
 
 const video = document.getElementById("webcam");
@@ -330,28 +330,28 @@ if (navigator.mediaDevices?.getUserMedia) {
 // }
 
 function logToData() {
-    if (!handResults || !handResults.landmarks) {
+    if (!handResults || !handResults.landmarks) { //check of er hand is gedetecteerd, zo niet stop functie
         console.warn("Geen handdata beschikbaar om te loggen.");
         return;
     }
 
     let newLetterArray = []; 
-    handResults.landmarks[0].forEach(point => { 
+    handResults.landmarks[0].forEach(point => { // coordinaten van de hand worden opgeslagen in een array
         newLetterArray.push(point.x, point.y, point.z);
     });
 
-    const labelInput = document.getElementById("labelInput");
-    const label = labelInput.value.trim();
+    const labelInput = document.getElementById("labelInput"); // haal label input op
+    const label = labelInput.value.trim(); // haal label op en verwijder spaties
 
-    if (!label) {
+    if (!label) { // check of er een label is ingevoerd
         alert("Voer eerst een label in voordat je data logt.");
         return;
     }
 
-    // Pak alles wat er al stond, of begin opnieuw
+    // Haal opgeslagen data op, of begin leeg als er nog niks is.
     let allData = JSON.parse(localStorage.getItem("data")) || [];
 
-    // Voeg nieuwe entry toe
+    // Voegt de nieuwe handdata en het label toe aan de bestaande lijst.
     allData.push({
         data: newLetterArray,
         label: label

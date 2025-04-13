@@ -25,7 +25,7 @@ function createNeuralNetwork() {
     });
 }
 
-
+// berektn de accuraatheid van het model
 async function calculateLetter() {
     let c = 0;
     let total = testdata.length;
@@ -42,6 +42,7 @@ async function calculateLetter() {
 
 }
 
+//  doet een voorspelling over de pose
 function classifyAsync(input) {
     return new Promise((resolve, reject) => {
         nn.classify(input, (result) => { // Geef input aan het model
