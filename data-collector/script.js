@@ -225,7 +225,7 @@ const initializeTrackers = async () => {
 
     console.log("All models loaded. You can start the webcam.");
     enableWebcamButton.addEventListener("click", toggleWebcam);
-    logButton.addEventListener("click", logResults);
+    logButton.addEventListener("click", logResults); // Button, log data
     // predictButton.addEventListener("click", () => {
     //     if (handResults && handResults.landmarks) {
     //         let flatArray = handResults.landmarks[0].flatMap(p => [p.x, p.y, p.z]);
@@ -307,11 +307,11 @@ function drawResults() {
 }
 
 // Log detected landmarks
-function logResults() {
+function logResults() { 
     console.log("Hand landmarks:", handResults?.landmarks);
     // console.log("Pose landmarks:", poseResults?.landmarks);
     // console.log("Face landmarks:", faceResults?.faceLandmarks);
-    logToData()
+    logToData() 
 }
 
 // Start the application
@@ -359,7 +359,6 @@ function logToData() {
 
     // Opslaan
     localStorage.setItem("data", JSON.stringify(allData));
-
     console.log(`Nieuwe entry opgeslagen met label "${label}"`);
 }
 
