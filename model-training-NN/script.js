@@ -5,8 +5,8 @@ const statusDiv = document.getElementById("status");
 let nn; //Neural Network object
 
 function startTraining(){
-    statusDiv.textContent = "Training Neural Network...";
-    ml5.setBackend("webgl");
+    statusDiv.textContent = "Training Neural Network..."; 
+    ml5.setBackend("webgl"); //
 
     nn = ml5.neuralNetwork({
         task: 'classification',
@@ -26,7 +26,7 @@ function startTraining(){
         nn.addData(pose.data, {label:pose.label});
     }
 
-    nn.normalizeData();
+    nn.normalizeData(); //
     nn.train({epochs: 130}, finishedTraining);
 
 }

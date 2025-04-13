@@ -335,8 +335,8 @@ function logToData() {
         return;
     }
 
-    let newLetterArray = [];
-    handResults.landmarks[0].forEach(point => {
+    let newLetterArray = []; 
+    handResults.landmarks[0].forEach(point => { 
         newLetterArray.push(point.x, point.y, point.z);
     });
 

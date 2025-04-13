@@ -25,16 +25,17 @@ function createNeuralNetwork() {
     });
 }
 
+
 async function calculateLetter() {
     let c = 0;
     let total = testdata.length;
 
-    for (let pose of testdata) {
-        const poseArray = pose.data;
-        const result = await classifyAsync(poseArray);
+    for (let pose of testdata) { // loop door alle poses
+        const poseArray = pose.data; // haal de data van de pose
+        const result = await classifyAsync(poseArray); //Het model doet een voorspelling over welke pose het denkt dat dit is.
         console.log(result.label, pose.label);
         if (result.label == pose.label) {
-            c += 1 ;
+            c += 1 ; // als de voorspelling klopt, tel 1 op bij c
         }
     }
     showInBrowser(total, c);
@@ -43,11 +44,11 @@ async function calculateLetter() {
 
 function classifyAsync(input) {
     return new Promise((resolve, reject) => {
-        nn.classify(input, (result) => {
+        nn.classify(input, (result) => { // Geef input aan het model
             if (result && result[0]) {
-                resolve(result[0]);
+                resolve(result[0]); // bij een goed resultaat
             } else {
-                reject(new Error("No result found"));
+                reject(new Error("No result found")); // bij geen result
             }
         });
     });
